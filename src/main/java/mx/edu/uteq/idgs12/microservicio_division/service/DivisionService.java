@@ -143,4 +143,9 @@ public class DivisionService {
         return resultado;
     }
 
+    // Test
+    public void test() {
+        System.out.println("Test");
+    }
+
 }
