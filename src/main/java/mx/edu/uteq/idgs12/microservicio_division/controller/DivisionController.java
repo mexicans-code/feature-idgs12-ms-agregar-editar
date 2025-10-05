@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import mx.edu.uteq.idgs12.microservicio_division.dto.DivisionToCreateDto;
 import mx.edu.uteq.idgs12.microservicio_division.dto.DivisionToViewListDto;
+import mx.edu.uteq.idgs12.microservicio_division.dto.DivisionToUpdateDto;
 import mx.edu.uteq.idgs12.microservicio_division.service.DivisionService;
 
 @RestController
@@ -60,6 +61,12 @@ public class DivisionController {
     @PostMapping("/divisiones")
     public DivisionToViewListDto create(@RequestBody DivisionToCreateDto dto) {
         return divisionService.create(dto);
+    }
+
+    // Actualizar una división existente
+    @PutMapping("/divisiones/{id}")
+    public DivisionToViewListDto update(@PathVariable Long id, @RequestBody DivisionToUpdateDto dto) {
+        return divisionService.update(id, dto);
     }
 
 }
