@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 import mx.edu.uteq.idgs12.microservicio_division.repository.DivisionRepository;
 import mx.edu.uteq.idgs12.microservicio_division.repository.ProgramaEducativoRepository;
+import mx.edu.uteq.idgs12.microservicio_divisio.dto.ProgramaEducativoToViewListDto;
+import mx.edu.uteq.idgs12.microservicio_division.ProgramaEducativo;
+import mx.edu.uteq.idgs12.microservicio_division.Division;
 
 @Service
 public class ProgramaEducativoService {
