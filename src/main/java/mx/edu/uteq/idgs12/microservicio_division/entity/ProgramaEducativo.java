@@ -1,7 +1,6 @@
 package mx.edu.uteq.idgs12.microservicio_division.entity;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
@@ -14,4 +13,8 @@ public class ProgramaEducativo {
     private long id;
     private String programa;
     private boolean activo;
+    
+    @ManyToOne
+    @JoinColumn(name = "division_id")
+    private Division division;
 }
