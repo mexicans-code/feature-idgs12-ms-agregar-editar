@@ -7,8 +7,8 @@ public class ProgramaEducativoToViewListDto {
     private Long programaId;
     private String programa;
     private boolean activo;
-    private String divisionNombre;
     private Long divisionId;
+    private String divisionNombre;
 }
 
 

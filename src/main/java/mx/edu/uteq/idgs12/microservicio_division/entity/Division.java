@@ -16,8 +16,7 @@ public class Division {
     private String image;
     private boolean activo;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "division_id")
+    @OneToMany(mappedBy = "division", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProgramaEducativo> programaEducativo;
-
+    
 }
