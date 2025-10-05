@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import mx.edu.uteq.idgs12.microservicio_division.dto.DivisionToCreateDto;
 import mx.edu.uteq.idgs12.microservicio_division.dto.DivisionToViewListDto;
 import mx.edu.uteq.idgs12.microservicio_division.service.DivisionService;
 
@@ -28,12 +31,14 @@ public class DivisionController {
     @GetMapping("/divisiones/{id}")
     public DivisionToViewListDto findById(@PathVariable Long id) {
         return divisionService.findById(id);
+    }
+
     @GetMapping
-	public List<DivisionToViewListDto> getAllDivisiones() {
-		return divisionService.findAll();
-	}
-	
-	// Borrar división
+    public List<DivisionToViewListDto> getAllDivisiones() {
+        return divisionService.findAll();
+    }
+
+    // Borrar división
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         divisionService.delete(id);
@@ -51,5 +56,10 @@ public class DivisionController {
         return divisionService.deshabilitar(id);
     }
 
+    // Crear una nueva división
+    @PostMapping("/divisiones")
+    public DivisionToViewListDto create(@RequestBody DivisionToCreateDto dto) {
+        return divisionService.create(dto);
+    }
 
 }
