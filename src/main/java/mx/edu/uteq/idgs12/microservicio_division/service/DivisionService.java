@@ -18,9 +18,9 @@ public class DivisionService {
     
     // Listar todas las divisiones
     public List<DivisionToViewListDto> findAll() {
-        List<DivisionEntity> divisiones = divisionRepository.findAll();
+        List<Division> divisiones = divisionRepository.findAll();
         List<DivisionToViewListDto> resultado = new ArrayList<>();
-        for (DivisionEntity division : divisiones) {
+        for (Division division : divisiones) {
             DivisionToViewListDto dto = new DivisionToViewListDto();
             dto.setDivisionId(division.getId());
             dto.setNombre(division.getNombre());
@@ -40,7 +40,7 @@ public class DivisionService {
 
     // Buscar una división por ID
     public DivisionToViewListDto findById(Long id) {
-        DivisionEntity division = divisionRepository.findById(id)
+        Division division = divisionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("División no encontrada con ID: " + id));
 
         DivisionToViewListDto dto = new DivisionToViewListDto();
