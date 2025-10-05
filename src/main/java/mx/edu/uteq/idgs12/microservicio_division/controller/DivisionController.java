@@ -45,13 +45,13 @@ public class DivisionController {
         divisionService.delete(id);
     }
 
-    // Habilitar división
+    // Habilitar división (activar)
     @PutMapping("/habilitar/{id}")
     public DivisionToViewListDto habilitar(@PathVariable Long id) {
         return divisionService.habilitar(id);
     }
 
-    // Deshabilitar división
+    // Deshabilitar división (desactivar)
     @PutMapping("/deshabilitar/{id}")
     public DivisionToViewListDto deshabilitar(@PathVariable Long id) {
         return divisionService.deshabilitar(id);
