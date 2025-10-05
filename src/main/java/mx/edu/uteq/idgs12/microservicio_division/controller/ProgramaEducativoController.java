@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import mx.edu.uteq.idgs12.microservicio_division.dto.ProgramaEducativoToCreateDto;
 import mx.edu.uteq.idgs12.microservicio_division.dto.ProgramaEducativoToUpdateDto;
 import mx.edu.uteq.idgs12.microservicio_division.dto.ProgramaEducativoToViewListDto;
+import com.idgs12.microservicio_division.dto.ProgramaEducativoToViewListDto;
+
 import mx.edu.uteq.idgs12.microservicio_division.service.ProgramaEducativoService;
 
 
@@ -40,6 +42,18 @@ public class ProgramaEducativoController {
         return programaEducativoService.update(id, dto);
     }
     //Eliminar un programa educativo
+
+    @GetMapping("/programas")
+    public List<ProgramaEducativoToViewListDto> findAll() {
+        return programaEducativoService.findAll();
+    }
+
+    @GetMapping("/programas/{id}")
+    public ProgramaEducativoToViewListDto findById(@PathVariable Long id) {
+        return programaEducativoService.findById(id);
+    }
+
+
      @DeleteMapping("/programas/{id}")
     public void delete(@PathVariable Long id) {
         programaEducativoService.delete(id);

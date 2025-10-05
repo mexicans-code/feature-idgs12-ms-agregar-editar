@@ -14,12 +14,20 @@ import mx.edu.uteq.idgs12.microservicio_division.dto.DivisionToViewListDto;
 import mx.edu.uteq.idgs12.microservicio_division.service.DivisionService;
 
 @RestController
-@RequestMapping("/api/division")
+@RequestMapping("/api")
 public class DivisionController {
+
     @Autowired
-	private  DivisionService divisionService;
+    private DivisionService divisionService;
 
+    @GetMapping("/divisiones")
+    public List<DivisionToViewListDto> findAll() {
+        return divisionService.findAll();
+    }
 
+    @GetMapping("/divisiones/{id}")
+    public DivisionToViewListDto findById(@PathVariable Long id) {
+        return divisionService.findById(id);
     @GetMapping
 	public List<DivisionToViewListDto> getAllDivisiones() {
 		return divisionService.findAll();
