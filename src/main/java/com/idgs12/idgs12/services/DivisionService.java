@@ -26,6 +26,8 @@ public class DivisionService {
             DivisionToViewListDto dto = new DivisionToViewListDto();
             dto.setDivisionId(division.getId());
             dto.setNombre(division.getNombre());
+            dto.setActivo(Boolean.parseBoolean(division.getActivo()));
+            dto.setImage(division.getImage());
             if (division.getProgramaEducativo() != null) {
                 List<String> programas = new ArrayList<>();
                 for (ProgramaEducativo prog : division.getProgramaEducativo()) {
@@ -48,7 +50,8 @@ public class DivisionService {
         DivisionToViewListDto dto = new DivisionToViewListDto();
         dto.setDivisionId(division.getId());
         dto.setNombre(division.getNombre());
-
+        dto.setActivo(Boolean.parseBoolean(division.getActivo()));
+        dto.setImage(division.getImage());
         if (division.getProgramaEducativo() != null) {
             List<String> programas = new ArrayList<>();
             for (ProgramaEducativo prog : division.getProgramaEducativo()) {
@@ -67,13 +70,15 @@ public class DivisionService {
         DivisionEntity entity = new DivisionEntity();
         entity.setNombre(dto.getNombre());
         entity.setImage(dto.getImage());
-        entity.setActivo(dto.getActivo());
+        entity.setActivo(String.valueOf(dto.getActivo()));
 
         DivisionEntity saved = divisionRepository.save(entity);
 
         DivisionToViewListDto resultado = new DivisionToViewListDto();
         resultado.setDivisionId(saved.getId());
         resultado.setNombre(saved.getNombre());
+        resultado.setActivo(Boolean.parseBoolean(saved.getActivo()));
+        resultado.setImage(saved.getImage());
         resultado.setProgramasEducativos(new ArrayList<>());
 
         return resultado;
@@ -86,14 +91,15 @@ public class DivisionService {
 
         division.setNombre(dto.getNombre());
         division.setImage(dto.getImage());
-        division.setActivo(dto.getActivo());
+        division.setActivo(String.valueOf(dto.getActivo()));
 
         DivisionEntity updated = divisionRepository.save(division);
 
         DivisionToViewListDto resultado = new DivisionToViewListDto();
         resultado.setDivisionId(updated.getId());
         resultado.setNombre(updated.getNombre());
-
+        resultado.setActivo(Boolean.parseBoolean(updated.getActivo()));
+        resultado.setImage(updated.getImage());
         if (updated.getProgramaEducativo() != null) {
             List<String> programas = new ArrayList<>();
             for (ProgramaEducativo prog : updated.getProgramaEducativo()) {
@@ -114,5 +120,4 @@ public class DivisionService {
         }
         divisionRepository.deleteById(id);
     }
-
 }

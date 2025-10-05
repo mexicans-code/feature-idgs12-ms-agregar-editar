@@ -8,5 +8,7 @@ import lombok.Data;
 public class DivisionToViewListDto {
     private Long divisionId;
     private String nombre;
+    private boolean activo;
+    private String image;
     private List<String> programasEducativos;
 }

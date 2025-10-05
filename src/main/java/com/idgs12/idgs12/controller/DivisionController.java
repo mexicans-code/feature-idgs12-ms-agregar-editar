@@ -12,6 +12,7 @@ import com.idgs12.idgs12.services.DivisionService;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class DivisionController {
 
     @Autowired
