@@ -16,18 +16,17 @@ public class DivisionService {
     @Autowired
     private DivisionRepository divisionRepository;
     
-    //Aqui puedes agregar metodos parr manejar la logica 
-
+    // Listar todas las divisiones
     public List<DivisionToViewListDto> findAll() {
-        List<Division> divisiones = divisionRepository.findAll();
+        List<DivisionEntity> divisiones = divisionRepository.findAll();
         List<DivisionToViewListDto> resultado = new ArrayList<>();
-        for (Division division : divisiones) {
+        for (DivisionEntity division : divisiones) {
             DivisionToViewListDto dto = new DivisionToViewListDto();
             dto.setDivisionId(division.getId());
             dto.setNombre(division.getNombre());
-            if (division.getProgramaEducativos() != null) {
+            if (division.getProgramaEducativo() != null) {
                 List<String> programas = new ArrayList<>();
-                for (ProgramaEducativo prog : division.getProgramaEducativos()) {
+                for (ProgramaEducativo prog : division.getProgramaEducativo()) {
                     programas.add(prog.getPrograma());
                 }
                 dto.setProgramasEducativos(programas);
@@ -38,5 +37,28 @@ public class DivisionService {
         }
         return resultado;
     }
+
+    // Buscar una división por ID
+    public DivisionToViewListDto findById(Long id) {
+        DivisionEntity division = divisionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("División no encontrada con ID: " + id));
+
+        DivisionToViewListDto dto = new DivisionToViewListDto();
+        dto.setDivisionId(division.getId());
+        dto.setNombre(division.getNombre());
+
+        if (division.getProgramaEducativo() != null) {
+            List<String> programas = new ArrayList<>();
+            for (ProgramaEducativo prog : division.getProgramaEducativo()) {
+                programas.add(prog.getPrograma());
+            }
+            dto.setProgramasEducativos(programas);
+        } else {
+            dto.setProgramasEducativos(new ArrayList<>());
+        }
+
+        return dto;
+    }
+
     
 }
