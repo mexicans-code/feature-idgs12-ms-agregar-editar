@@ -18,6 +18,6 @@ public class Division {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "division_id")
-    private List<ProgramaEducativo> programaEducativos;
+    private List<ProgramaEducativo> programaEducativo;
 
 }

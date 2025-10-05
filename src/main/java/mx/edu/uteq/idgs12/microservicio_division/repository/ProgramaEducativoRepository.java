@@ -8,3 +8,4 @@ import mx.edu.uteq.idgs12.microservicio_division.entity.ProgramaEducativo;
 public interface ProgramaEducativoRepository extends JpaRepository<ProgramaEducativo, Long> {
 
 }
+
