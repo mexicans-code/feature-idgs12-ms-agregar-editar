@@ -17,6 +17,7 @@ public class DivisionService {
     @Autowired
     private DivisionRepository divisionRepository;
     
+    // Listar todas las divisiones
 
     public List<DivisionToViewListDto> findAll() {
         List<Division> divisiones = divisionRepository.findAll();
@@ -38,6 +39,11 @@ public class DivisionService {
         }
         return resultado;
     }
+
+    // Buscar una división por ID
+    public DivisionToViewListDto findById(Long id) {
+        Division division = divisionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("División no encontrada con ID: " + id));
 
     // Borrar una división
     public void delete(Long id) {
@@ -87,4 +93,6 @@ public class DivisionService {
 
         return dto;
     }
+
+    
 }

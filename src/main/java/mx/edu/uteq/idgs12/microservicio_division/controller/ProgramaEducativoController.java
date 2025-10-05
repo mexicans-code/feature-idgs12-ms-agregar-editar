@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.idgs12.microservicio_division.dto.ProgramaEducativoToViewListDto;
+
 import mx.edu.uteq.idgs12.microservicio_division.service.ProgramaEducativoService;
 
 
@@ -14,6 +16,17 @@ public class ProgramaEducativoController {
 
     @Autowired
     private ProgramaEducativoService programaEducativoService;
+
+    @GetMapping("/programas")
+    public List<ProgramaEducativoToViewListDto> findAll() {
+        return programaEducativoService.findAll();
+    }
+
+    @GetMapping("/programas/{id}")
+    public ProgramaEducativoToViewListDto findById(@PathVariable Long id) {
+        return programaEducativoService.findById(id);
+    }
+
 
      @DeleteMapping("/programas/{id}")
     public void delete(@PathVariable Long id) {

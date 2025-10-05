@@ -8,10 +8,14 @@ import lombok.Data;
 @Entity
 @Table(name = "programas_educativos")
 public class ProgramaEducativo {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String programa;
     private boolean activo;
+
+    @ManyToOne
+    @JoinColumn(name = "division_id")
+    private DivisionEntity division;
 }
