@@ -13,10 +13,12 @@ import mx.edu.uteq.idgs12.microservicio_division.repository.DivisionRepository;
 
 @Service
 public class DivisionService {
+    
     @Autowired
     private DivisionRepository divisionRepository;
     
     // Listar todas las divisiones
+
     public List<DivisionToViewListDto> findAll() {
         List<Division> divisiones = divisionRepository.findAll();
         List<DivisionToViewListDto> resultado = new ArrayList<>();
@@ -43,6 +45,38 @@ public class DivisionService {
         Division division = divisionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("División no encontrada con ID: " + id));
 
+    // Borrar una división
+    public void delete(Long id) {
+        if (!divisionRepository.existsById(id)) {
+            throw new RuntimeException("División no encontrada con ID: " + id);
+        }
+        divisionRepository.deleteById(id);
+    }
+
+    // Habilitar una división
+    public DivisionToViewListDto habilitar(Long id) {
+        Division division = divisionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("División no encontrada con ID: " + id));
+
+        division.setActivo(true);
+        Division updated = divisionRepository.save(division);
+
+        return convertirADto(updated);
+    }
+
+    // Deshabilitar una división
+    public DivisionToViewListDto deshabilitar(Long id) {
+        Division division = divisionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("División no encontrada con ID: " + id));
+
+        division.setActivo(false);
+        Division updated = divisionRepository.save(division);
+
+        return convertirADto(updated);
+    }
+
+    // Convertir entidad a DTO
+     private DivisionToViewListDto convertirADto(Division division) {
         DivisionToViewListDto dto = new DivisionToViewListDto();
         dto.setDivisionId(division.getId());
         dto.setNombre(division.getNombre());

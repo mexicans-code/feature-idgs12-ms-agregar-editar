@@ -2,8 +2,6 @@ package mx.edu.uteq.idgs12.microservicio_division.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import mx.edu.uteq.idgs12.microservicio_division.repository.DivisionRepository;
 import mx.edu.uteq.idgs12.microservicio_division.repository.ProgramaEducativoRepository;
 import mx.edu.uteq.idgs12.microservicio_divisio.dto.ProgramaEducativoToViewListDto;
 import mx.edu.uteq.idgs12.microservicio_division.ProgramaEducativo;
@@ -11,8 +9,7 @@ import mx.edu.uteq.idgs12.microservicio_division.Division;
 
 @Service
 public class ProgramaEducativoService {
-@Autowired
-    private ProgramaEducativoRepository programaEducativoRepository;
+
 
     @Autowired
     private DivisionRepository divisionRepository;
@@ -54,6 +51,15 @@ public class ProgramaEducativoService {
         }
 
         return dto;
+    private ProgramaEducativoRepository programaEducativoRepository;
+    
+    // Eliminar un programa educativo
+    public void delete(Long id) {
+        if (!programaEducativoRepository.existsById(id)) {
+            throw new RuntimeException("Programa Educativo no encontrado con ID: " + id);
+        }
+        programaEducativoRepository.deleteById(id);
     }
 
+    
 }

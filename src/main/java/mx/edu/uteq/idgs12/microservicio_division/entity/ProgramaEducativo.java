@@ -1,6 +1,7 @@
 package mx.edu.uteq.idgs12.microservicio_division.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
